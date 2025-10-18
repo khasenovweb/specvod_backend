@@ -1,0 +1,8 @@
+.venv
+uploads
+__pycache__/
+celerybeat-schedule.db
+celerybeat-schedule
+.env
+backup
+
