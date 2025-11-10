@@ -31,7 +31,20 @@ if os.getenv('DEBUG') == 'True':
 elif os.getenv('DEBUG') == 'False':
     DEBUG = False 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'specvod.khasenov.ru',
+    '127.0.0.1'
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://127.0.0.1',
+    'https://specvod.khasenov.ru',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # для разработки
+    "http://127.0.0.1:3000",
+]
 
 
 # Application definition
@@ -43,11 +56,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'ninja',
+    'sorl.thumbnail',
+
+    'main',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -115,7 +134,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'UTC'
 
@@ -127,9 +146,151 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, '../static')
+MEDIA_URL = '/uploads/'
+MEDIA_ROOT = os.path.join(BASE_DIR, '../uploads')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+customColorPalette = [
+        {
+            'color': 'hsl(4, 90%, 58%)',
+            'label': 'Red'
+        },
+        {
+            'color': 'hsl(340, 82%, 52%)',
+            'label': 'Pink'
+        },
+        {
+            'color': 'hsl(291, 64%, 42%)',
+            'label': 'Purple'
+        },
+        {
+            'color': 'hsl(262, 52%, 47%)',
+            'label': 'Deep Purple'
+        },
+        {
+            'color': 'hsl(231, 48%, 48%)',
+            'label': 'Indigo'
+        },
+        {
+            'color': 'hsl(207, 90%, 54%)',
+            'label': 'Blue'
+        },
+    ]
+
+CKEDITOR_5_CONFIGS = {
+    # 'dsd': {
+    #     'toolbar': [
+    #         'heading', 
+    #         '|', 
+    #         'bold', 
+    #         'italic', 
+    #         'link',
+    #         'bulletedList', 
+    #         'numberedList', 
+    #         'blockQuote', 
+    #         'imageUpload', 
+    #     ],
+    #     'language': 'ru',
+    # },
+    'default': {
+        'language': 'ru',
+        'blockToolbar': [
+            'paragraph', 
+            'heading1', 
+            'heading2', 
+            'heading3',
+            '|',
+            'bulletedList', 
+            'numberedList',
+            '|',
+            'blockQuote',
+        ],
+        'toolbar': [
+            'heading', 
+            '|', 
+            # 'outdent', 
+            # 'indent', 
+            # '|', 
+            'bold', 
+            'italic', 
+            'link', 
+            'underline', 
+            'strikethrough',
+            'code',
+            # 'subscript', 
+            # 'superscript', 
+            # 'highlight', 
+            '|', 
+            # 'codeBlock', 
+            'sourceEditing', 
+            'insertImage',
+            'bulletedList', 
+            'numberedList', 
+            # 'todoList', 
+            '|',  
+            'blockQuote', 
+            # 'imageUpload', 
+            '|',
+            # 'fontSize', 
+            # 'fontFamily', 
+            # 'fontColor', 
+            # 'fontBackgroundColor', 
+            # 'mediaEmbed', 
+            'removeFormat',
+            'insertTable',
+        ],
+        'image': {
+            'toolbar': ['imageTextAlternative', '|', 'imageStyle:alignLeft',
+                        'imageStyle:alignRight', 'imageStyle:alignCenter', 'imageStyle:side',  '|'],
+            'styles': [
+                'full',
+                'side',
+                'alignLeft',
+                'alignRight',
+                'alignCenter',
+            ]
+
+        },
+        'table': {
+            'contentToolbar': [ 'tableColumn', 'tableRow', 'mergeTableCells',
+            'tableProperties', 'tableCellProperties' ],
+            'tableProperties': {
+                'borderColors': customColorPalette,
+                'backgroundColors': customColorPalette
+            },
+            'tableCellProperties': {
+                'borderColors': customColorPalette,
+                'backgroundColors': customColorPalette
+            }
+        },
+        'heading' : {
+            'options': [
+                { 'model': 'paragraph', 'title': 'Paragraph', 'class': 'ck-heading_paragraph' },
+                { 'model': 'heading1', 'view': 'h1', 'title': 'Heading 1', 'class': 'ck-heading_heading1' },
+                { 'model': 'heading2', 'view': 'h2', 'title': 'Heading 2', 'class': 'ck-heading_heading2' },
+                { 'model': 'heading3', 'view': 'h3', 'title': 'Heading 3', 'class': 'ck-heading_heading3' },
+                { 'model': 'heading4', 'view': 'h4', 'title': 'Heading 4', 'class': 'ck-heading_heading4' },
+                { 'model': 'heading5', 'view': 'h5', 'title': 'Heading 5', 'class': 'ck-heading_heading5' },
+                { 'model': 'heading6', 'view': 'h6', 'title': 'Heading 6', 'class': 'ck-heading_heading6' },
+            ]
+        }
+    },
+    'list': {
+        'properties': {
+            'styles': 'true',
+            'startIndex': 'true',
+            'reversed': 'true',
+        }
+    }
+}
+
+
+CELERY_BROKER_URL = "redis://127.0.0.1:6379"
+CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379"
+

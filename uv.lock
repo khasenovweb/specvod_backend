@@ -194,6 +194,19 @@ wheels = [
 ]
 
 [[package]]
+name = "django-cors-headers"
+version = "4.9.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "asgiref" },
+    { name = "django" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/21/39/55822b15b7ec87410f34cd16ce04065ff390e50f9e29f31d6d116fc80456/django_cors_headers-4.9.0.tar.gz", hash = "sha256:fe5d7cb59fdc2c8c646ce84b727ac2bca8912a247e6e68e1fb507372178e59e8", size = 21458, upload-time = "2025-09-18T10:40:52.326Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/30/d8/19ed1e47badf477d17fb177c1c19b5a21da0fd2d9f093f23be3fb86c5fab/django_cors_headers-4.9.0-py3-none-any.whl", hash = "sha256:15c7f20727f90044dcee2216a9fd7303741a864865f0c3657e28b7056f61b449", size = 12809, upload-time = "2025-09-18T10:40:50.843Z" },
+]
+
+[[package]]
 name = "django-dbbackup"
 version = "5.0.0"
 source = { registry = "https://pypi.org/simple" }
@@ -444,6 +457,15 @@ wheels = [
 ]
 
 [[package]]
+name = "sorl-thumbnail"
+version = "12.11.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/28/e9/38491b3556c2ec19b53d0dcc5474359fb9344ce24a26745d3ca88237b848/sorl_thumbnail-12.11.0.tar.gz", hash = "sha256:191b89c27ecb40b5c2a35549d557d17c4841c6aff439b2e17b938b91eea463b3", size = 667102, upload-time = "2024-09-21T17:12:08.585Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/bf/b4/4ff585c7b096fe82e55ee8d1dbae74f5f7cedacbf08cb25c9a83755e4ef3/sorl_thumbnail-12.11.0-py3-none-any.whl", hash = "sha256:e3e375013ca3f14bca9f98fe9861153adac3a6ea4af5e9dc3f31cb605df765b5", size = 42789, upload-time = "2024-09-21T17:11:54.11Z" },
+]
+
+[[package]]
 name = "specvod-backend"
 version = "0.1.0"
 source = { virtual = "." }
@@ -451,6 +473,7 @@ dependencies = [
     { name = "daphne" },
     { name = "django" },
     { name = "django-ckeditor-5" },
+    { name = "django-cors-headers" },
     { name = "django-dbbackup" },
     { name = "django-mptt" },
     { name = "django-ninja" },
@@ -458,6 +481,7 @@ dependencies = [
     { name = "pillow" },
     { name = "python-dotenv" },
     { name = "redis" },
+    { name = "sorl-thumbnail" },
 ]
 
 [package.metadata]
@@ -465,6 +489,7 @@ requires-dist = [
     { name = "daphne", specifier = ">=4.2.1" },
     { name = "django", specifier = ">=5.2.7" },
     { name = "django-ckeditor-5", specifier = ">=0.2.18" },
+    { name = "django-cors-headers", specifier = ">=4.9.0" },
     { name = "django-dbbackup", specifier = ">=5.0.0" },
     { name = "django-mptt", specifier = ">=0.18.0" },
     { name = "django-ninja", specifier = ">=1.4.3" },
@@ -472,6 +497,7 @@ requires-dist = [
     { name = "pillow", specifier = ">=12.0.0" },
     { name = "python-dotenv", specifier = ">=1.1.1" },
     { name = "redis", specifier = ">=6.4.0" },
+    { name = "sorl-thumbnail", specifier = ">=12.11.0" },
 ]
 
 [[package]]
