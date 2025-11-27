@@ -100,3 +100,29 @@ class ReviewSourceAdmin(admin.ModelAdmin):
         "display_img_preview", 
         "name",
     ]
+
+
+
+@admin.register(Faq)
+class FaqAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Number)
+class NumberAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Sertificate)
+class SertificateAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Quiz)
+class QuizAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Promotion)
+class PromotionAdmin(admin.ModelAdmin):
+    pass

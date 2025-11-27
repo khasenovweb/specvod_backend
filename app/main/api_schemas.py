@@ -42,10 +42,56 @@ class ReviewSourceSchema(ModelSchema):
         fields = "__all__"
 
 
-
 class ReviewSchema(ModelSchema):
     source: ReviewSourceSchema
 
     class Meta:
         model = Review
         fields = "__all__"
+        exclude = ['source']
+
+        
+class FaqSchema(ModelSchema):
+
+    class Meta:
+        model = Faq
+        fields = "__all__"
+        # exclude = ['source']
+
+
+class NumberSchema(ModelSchema):
+
+    class Meta:
+        model = Number
+        fields = "__all__"
+
+
+class SertificateSchema(ModelSchema):
+    img_thumb: Optional[str] = None
+
+    class Meta:
+        model = Sertificate
+        fields = "__all__"
+
+    @staticmethod
+    def resolve_img_thumb(obj):
+        return (get_thumbnail(obj.img, "344", quality=99, format="PNG").url if obj.img else None)
+
+        
+class QuizSchema(ModelSchema):
+
+    class Meta:
+        model = Quiz
+        fields = "__all__"
+        
+
+class PromotionSchema(ModelSchema):
+    img_thumb: Optional[str] = None
+
+    class Meta:
+        model = Promotion
+        fields = "__all__"
+
+    @staticmethod
+    def resolve_img_thumb(obj):
+        return (get_thumbnail(obj.img, "700", quality=99, format="PNG").url if obj.img else None)

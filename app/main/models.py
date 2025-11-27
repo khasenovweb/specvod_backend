@@ -1,4 +1,5 @@
 from django.db import models
+from django_ckeditor_5.fields import CKEditor5Field
 
 
 
@@ -85,3 +86,83 @@ class ReviewSource(models.Model):
     class Meta:
         verbose_name = "Источник отзыва"
         verbose_name_plural = "Источники отзыва"
+
+        
+        
+class Faq(models.Model):
+    """ FAQ """
+    question = models.CharField(verbose_name="Вопрос", max_length=255)
+    answer = CKEditor5Field(verbose_name="Ответ", null=True, blank=True)
+    order = models.IntegerField(verbose_name="Порядок сортировки", default=0)
+
+    def __str__(self):
+        return self.question
+
+    class Meta:
+        verbose_name = "FAQ"
+        verbose_name_plural = "FAQS"
+        ordering = [
+            'order'
+        ]
+
+        
+class Number(models.Model):
+    """ Цифра """
+    value = models.CharField(verbose_name="Значение", max_length=255)
+    desc = models.CharField(verbose_name="Описание", max_length=255)
+    order = models.IntegerField(verbose_name="Порядок сортировки", default=0)
+
+    def __str__(self):
+        return self.value + " " + self.desc
+
+    class Meta:
+        verbose_name = "Цифра"
+        verbose_name_plural = "Цифры"
+        ordering = [
+            'order'
+        ]
+
+        
+class Sertificate(models.Model):
+    """ Сертификат """
+    name = models.CharField(verbose_name="Название", max_length=255)
+    img = models.ImageField(verbose_name="Фото", upload_to="sertificates/")
+    order = models.IntegerField(verbose_name="Порядок сортировки", default=0)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Сертификат"
+        verbose_name_plural = "Сертификаты"
+        ordering = [
+            'order'
+        ]
+
+        
+class Quiz(models.Model):
+    """ Квиз """
+    title = models.CharField(verbose_name="Заголовок", max_length=255)
+    code = models.TextField(verbose_name="Код подключения")
+    btn_link = models.CharField(verbose_name="Ссылка для кнопки", max_length=255)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "Квиз"
+        verbose_name_plural = "Квизы"
+        
+
+class Promotion(models.Model):
+    """ Акция """
+    name = models.CharField(verbose_name="Название", max_length=255)
+    desc = models.TextField(verbose_name="Описание")
+    img = models.ImageField(verbose_name="Изображение", upload_to="promotions/")
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Акция"
+        verbose_name_plural = "Акции"

@@ -59,8 +59,11 @@ INSTALLED_APPS = [
 
     'ninja',
     'sorl.thumbnail',
+    'django_ckeditor_5',
+    'mptt', 
 
     'main',
+    'services',
 ]
 
 MIDDLEWARE = [
