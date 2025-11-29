@@ -83,4 +83,52 @@ def promotions_list(request, service_slug: str = None):
     return promotions
 
 
+@router.get("/price/", tags=["Основное"], summary="Список позиций прайса", response=List[PricePositionSchema])
+def price_positions_list(request, service_slug: str = None):
+    """ Список позици прайса """
+    positions = PricePosition.objects.all()
+
+    if service_slug:
+        service = Service.objects.get(slug=service_slug)
+        positions = service.price_positions.all()
+        
+    return positions
+
+
+@router.get("/methods/", tags=["Основное"], summary="Список методов бурения", response=List[MethodSchema])
+def methods_list(request, service_slug: str = None):
+    """ Список методов бурения """
+    methods = Method.objects.all()
+
+    if service_slug:
+        service = Service.objects.get(slug=service_slug)
+        methods = service.methods.all()
+        
+    return methods
+
+
+@router.get("/technics/", tags=["Основное"], summary="Список техники", response=List[TechnicSchema])
+def technics_list(request, service_slug: str = None):
+    """ Список техники """
+    technics = Technic.objects.all()
+
+    if service_slug:
+        service = Service.objects.get(slug=service_slug)
+        technics = service.technics.all()
+        
+    return technics
+
+
+@router.get("/etaps/", tags=["Основное"], summary="Список этапов", response=List[EtapSchema])
+def etaps_list(request, service_slug: str = None):
+    """ Список этапов """
+    etaps = Etap.objects.all()
+
+    if service_slug:
+        service = Service.objects.get(slug=service_slug)
+        etaps = service.etaps.all()
+        
+    return etaps
+
+
 

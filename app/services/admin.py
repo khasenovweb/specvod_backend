@@ -14,5 +14,16 @@ class ServiceAdmin(MPTTModelAdmin):
         "preims",
         "sertificates",
         "promotions",
+        "properties",
+        "price_positions",
+        "methods",
+        "technics",
+        "etaps",
     ]
+
+
+@admin.register(Property)
+class PropertyAdmin(admin.ModelAdmin):
+    """ Характеристика """
+    pass
 

@@ -126,3 +126,23 @@ class QuizAdmin(admin.ModelAdmin):
 @admin.register(Promotion)
 class PromotionAdmin(admin.ModelAdmin):
     pass
+
+
+@admin.register(PricePosition)
+class PricePositionAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Method)
+class MethodAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Technic)
+class TechnicAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Etap)
+class EtapAdmin(admin.ModelAdmin):
+    pass

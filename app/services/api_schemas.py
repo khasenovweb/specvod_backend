@@ -11,6 +11,8 @@ from services.models import *
 class ServiceSchema(ModelSchema):
     hero_bg_img_thumb: Optional[str] = None
     textblock_img_thumb: Optional[str] = None
+    methods_bg_thumb: Optional[str] = None
+    etaps_img_thumb: Optional[str] = None
     url: Optional[str] = None
 
     class Meta:
@@ -24,6 +26,14 @@ class ServiceSchema(ModelSchema):
     @staticmethod
     def resolve_textblock_img_thumb(obj):
         return (get_thumbnail(obj.textblock_img, "520x520", crop="center", quality=99, format="PNG").url if obj.textblock_img else None)
+
+    @staticmethod
+    def resolve_methods_bg_thumb(obj):
+        return (get_thumbnail(obj.methods_bg, "1920", quality=99, format="PNG").url if obj.methods_bg else None)
+
+    @staticmethod
+    def resolve_etaps_img_thumb(obj):
+        return (get_thumbnail(obj.etaps_img, "520x520", crop="center", quality=99, format="PNG").url if obj.etaps_img else None)
 
     @staticmethod
     def resolve_url(obj):
@@ -69,16 +79,23 @@ class ServiceMenuSchema(ModelSchema):
         return obj.get_url()
 
 
+class PropertySchema(ModelSchema):
+    class Meta:
+        model = Property
+        fields = "__all__"
+
 
 class ServiceChildrenSchema(ModelSchema):
     hero_bg_img_thumb: Optional[str] = None
     url: Optional[str] = None
+    properties: List[PropertySchema] = []
 
     class Meta:
         model = Service
         fields = [
             "name",
             "hero_desc",
+            "price",
         ] 
 
     @staticmethod

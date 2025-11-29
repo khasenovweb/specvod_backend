@@ -166,3 +166,74 @@ class Promotion(models.Model):
     class Meta:
         verbose_name = "Акция"
         verbose_name_plural = "Акции"
+
+        
+        
+class PricePosition(models.Model):
+    """ Позиция прайса """
+    name = models.CharField(verbose_name="Название", max_length=255)
+    price = models.CharField(verbose_name="Цена", max_length=255)
+    img = models.ImageField(verbose_name="Изображение", upload_to="price_positions/", null=True, blank=True)
+    order = models.IntegerField(verbose_name="Порядок сортировки", default=0)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Позиция прайса"
+        verbose_name_plural = "Позиции прайса"
+        ordering = [
+            'order'
+        ]
+
+        
+class Method(models.Model):
+    """ Способ бурения """
+    title = models.CharField(verbose_name="Заголовок", max_length=255)
+    desc = models.TextField(verbose_name="Описание")
+    img = models.ImageField(verbose_name="Изображение", upload_to="methods/")
+    order = models.IntegerField(verbose_name="Порядок сортировки", default=0)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "Способ бурения"
+        verbose_name_plural = "Способы бурения"
+        ordering = [
+            'order'
+        ]
+
+        
+class Technic(models.Model):
+    """ Техника """
+    title = models.CharField(verbose_name="Заголовок", max_length=255)
+    desc = models.TextField(verbose_name="Описание")
+    img = models.ImageField(verbose_name="Изображение", upload_to="methods/")
+    order = models.IntegerField(verbose_name="Порядок сортировки", default=0)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "Техника"
+        verbose_name_plural = "Техника"
+        ordering = [
+            'order'
+        ]
+
+        
+class Etap(models.Model):
+    """ Этап """
+    name = models.CharField(verbose_name="Название", max_length=255)
+    order = models.IntegerField(verbose_name="Порядок сортировки", default=0)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Этап"
+        verbose_name_plural = "Этапы"
+        ordering = [
+            'order'
+        ]

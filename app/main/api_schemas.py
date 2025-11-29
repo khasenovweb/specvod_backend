@@ -95,3 +95,42 @@ class PromotionSchema(ModelSchema):
     @staticmethod
     def resolve_img_thumb(obj):
         return (get_thumbnail(obj.img, "700", quality=99, format="PNG").url if obj.img else None)
+
+
+        
+class PricePositionSchema(ModelSchema):
+
+    class Meta:
+        model = PricePosition
+        fields = "__all__"
+
+        
+class MethodSchema(ModelSchema):
+    img_thumb: Optional[str] = None
+
+    class Meta:
+        model = Method
+        fields = "__all__"
+
+    @staticmethod
+    def resolve_img_thumb(obj):
+        return (get_thumbnail(obj.img, "520x520", crop="center", quality=99, format="PNG").url if obj.img else None)
+
+        
+class TechnicSchema(ModelSchema):
+    img_thumb: Optional[str] = None
+
+    class Meta:
+        model = Technic
+        fields = "__all__"
+
+    @staticmethod
+    def resolve_img_thumb(obj):
+        return (get_thumbnail(obj.img, "700", quality=99, format="PNG").url if obj.img else None)
+        
+
+class EtapSchema(ModelSchema):
+
+    class Meta:
+        model = Etap
+        fields = "__all__"

@@ -3,8 +3,6 @@ from mptt.models import MPTTModel, TreeForeignKey
 
 from main.models import *
 
-# Create your models here.
-
 
 
 class Service(MPTTModel):
@@ -14,6 +12,8 @@ class Service(MPTTModel):
     name = models.CharField(verbose_name="Название", max_length=255)
     slug = models.SlugField(verbose_name="SLUG", unique=True)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
+
+    price = models.CharField(verbose_name="Цена", max_length=255, null=True, blank=True)
 
     hero_title = models.CharField(verbose_name="Заголовок (первый экран)", max_length=255, null=True, blank=True)
     hero_desc = models.TextField(verbose_name="Описание (первый экран)", max_length=255, null=True, blank=True)
@@ -32,6 +32,27 @@ class Service(MPTTModel):
     promotions = models.ManyToManyField("main.Promotion", verbose_name="Акции", blank=True)
 
     childrens_title = models.CharField(verbose_name="Заголовок дочерних услуг", max_length=255, null=True, blank=True)
+
+    properties = models.ManyToManyField("Property", verbose_name="Характеристики", blank=True)
+
+    price_positions = models.ManyToManyField("main.PricePosition", verbose_name="Позиции прайса", blank=True)
+
+    show_calc = models.BooleanField(verbose_name="Показывать калькулятор расчета стоимости бурения и обустройства скважины", default=False)
+    show_calc_2 = models.BooleanField(verbose_name="Показывать калькулятор расчета стоимости канализационной насосной станции", default=False)
+
+    methods_title = models.CharField(verbose_name="Заголовок (способы бурения)", max_length=255, null=True, blank=True)
+    methods_desc = models.TextField(verbose_name="Описание (способы бурения)", null=True, blank=True)
+    methods_subtitle = models.CharField(verbose_name="Подзаголовок (способы бурения)", max_length=255, null=True, blank=True)
+    methods_bg = models.ImageField(verbose_name="Фоновое изображение (способы бурения)", upload_to="methods/bg/", null=True, blank=True)
+    methods = models.ManyToManyField("main.Method", verbose_name="Способы бурения", blank=True)
+
+    technics_title = models.CharField(verbose_name="Заголовок (техника)", max_length=255, null=True, blank=True)
+    technics = models.ManyToManyField("main.Technic", verbose_name="Техника", blank=True)
+
+    etaps_title = models.CharField(verbose_name="Заголовок (этапы)", max_length=255, null=True, blank=True)
+    etaps_subtitle = models.CharField(verbose_name="Подзаголовок (этапы)", max_length=255, null=True, blank=True)
+    etaps_img = models.ImageField(verbose_name="Изображение (этапы)", upload_to="etaps/", null=True, blank=True)
+    etaps = models.ManyToManyField("main.Etap", verbose_name="Этапы", blank=True)
 
     class MPTTMeta:
         order_insertion_by = ['name']
@@ -55,6 +76,20 @@ class Service(MPTTModel):
     class Meta:
         verbose_name = "Услуга"
         verbose_name_plural = "Услуги"
-        # ordering = [
-        #     'order'
-        # ]
+
+
+class Property(models.Model):
+    """ Характеристика """
+    name = models.CharField(verbose_name="Название", max_length=255)
+    value = models.CharField(verbose_name="Значение", max_length=255)
+    order = models.IntegerField(verbose_name="Порядок сортировки", default=0)
+
+    def __str__(self):
+        return self.name + ": " + self.value
+
+    class Meta:
+        verbose_name = "Характеристика"
+        verbose_name_plural = "Характеристики"
+        ordering = [
+            'order'
+        ]
