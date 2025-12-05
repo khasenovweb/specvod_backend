@@ -58,7 +58,7 @@ class ServiceMenuChildSchema(ModelSchema):
 
     class Meta:
         model = Service
-        fields = ["name"]
+        fields = ["name", "price"]
 
     @staticmethod
     def resolve_url(obj):
@@ -72,7 +72,7 @@ class ServiceMenuSchema(ModelSchema):
 
     class Meta:
         model = Service
-        fields = ["name"]
+        fields = ["slug", "name", "price"]
 
     @staticmethod
     def resolve_url(obj):

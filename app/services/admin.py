@@ -19,6 +19,8 @@ class ServiceAdmin(MPTTModelAdmin):
         "methods",
         "technics",
         "etaps",
+        "reviews",
+        "faqs",
     ]
 
 

@@ -134,3 +134,34 @@ class EtapSchema(ModelSchema):
     class Meta:
         model = Etap
         fields = "__all__"
+
+
+
+class HomePageSchema(ModelSchema):
+    hero_bg_img_thumb: Optional[str] = None
+    about_company_img_thumb: Optional[str] = None
+
+    class Meta:
+        model = HomePage
+        fields = "__all__"
+
+    @staticmethod
+    def resolve_hero_bg_img_thumb(obj):
+        return (get_thumbnail(obj.hero_bg_img, "1920", quality=99, format="PNG").url if obj.hero_bg_img else None)
+
+    @staticmethod
+    def resolve_about_company_img_thumb(obj):
+        return (get_thumbnail(obj.about_company_img, "520x520", crop="center", quality=99, format="PNG").url if obj.about_company_img else None)
+
+
+
+class HistoryEtapSchema(ModelSchema):
+    img_thumb: Optional[str] = None
+
+    class Meta:
+        model = HistoryEtap
+        fields = "__all__"
+
+    @staticmethod
+    def resolve_img_thumb(obj):
+        return (get_thumbnail(obj.img, "500x500", crop="center", quality=99, format="PNG").url if obj.img else None)

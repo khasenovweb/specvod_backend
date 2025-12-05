@@ -54,6 +54,12 @@ class Service(MPTTModel):
     etaps_img = models.ImageField(verbose_name="Изображение (этапы)", upload_to="etaps/", null=True, blank=True)
     etaps = models.ManyToManyField("main.Etap", verbose_name="Этапы", blank=True)
 
+    # здесь должны быть работы
+    
+    reviews = models.ManyToManyField("main.Review", verbose_name="Отзывы", blank=True)
+
+    faqs = models.ManyToManyField("main.Faq", verbose_name="FAQS", blank=True)
+
     class MPTTMeta:
         order_insertion_by = ['name']
 

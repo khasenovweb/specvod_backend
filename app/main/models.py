@@ -237,3 +237,57 @@ class Etap(models.Model):
         ordering = [
             'order'
         ]
+
+        
+class HomePage(models.Model):
+    """ Главная страница """
+    seo_title = models.CharField(verbose_name="SEO title", max_length=255, null=True, blank=True)
+    seo_desc = models.TextField(verbose_name="SEO desc", max_length=255, null=True, blank=True)
+
+    hero_title = models.CharField(verbose_name="Заголовок (первый экран)", max_length=255)
+    hero_desc = models.TextField(verbose_name="Описание (первый экран)", max_length=255, null=True, blank=True)
+    hero_bg_img = models.ImageField(verbose_name="Фоновая картинка (первый экран", upload_to="services/hero/", null=True, blank=True)
+    hero_numbers = models.ManyToManyField("Number", verbose_name="Цифры (первый экран)", blank=True, related_name="homapage_hero_numbers")
+
+    preims = models.ManyToManyField("Preim", verbose_name="Преимущества", blank=True)
+
+    about_company_title = models.CharField(verbose_name="Заголовок (о компании)", max_length=255, null=True, blank=True)
+    about_company_text = models.TextField(verbose_name="Текст (о компании)", max_length=255, null=True, blank=True)
+    about_company_img = models.ImageField(verbose_name="Изображение (о компании)", upload_to="about_company/", null=True, blank=True)
+    about_company_numbers = models.ManyToManyField("Number", verbose_name="Цифры (о компании)", blank=True, related_name="homapage_about_company_numbers")
+
+    history_title = models.CharField(verbose_name="Заголовок (история компании)", max_length=255, null=True, blank=True)
+    history_desc = models.TextField(verbose_name="Описание (история компании)", null=True, blank=True)
+    history_etaps = models.ManyToManyField("HistoryEtap", verbose_name="Этапы истории", blank=True)
+
+    services_title = models.CharField(verbose_name="Заголовок (услуги)", max_length=255, null=True, blank=True)
+    services_desc = models.TextField(verbose_name="Описание (услуги)", null=True, blank=True)
+
+    faqs = models.ManyToManyField("Faq", verbose_name="FAQS", blank=True)
+
+
+    def __str__(self):
+        return self.hero_title
+
+    class Meta:
+        verbose_name = "Главная страница"
+        verbose_name_plural = "Главная страница"
+
+        
+
+class HistoryEtap(models.Model):
+    """ Этап истории """
+    title = models.CharField(verbose_name="Заголовок", max_length=255)
+    desc = models.TextField(verbose_name="Описание")
+    img = models.ImageField(verbose_name="Изображение", upload_to="history_etaps/")
+    order = models.IntegerField(verbose_name="Порядок сортировки", default=0)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "Этап истории"
+        verbose_name_plural = "Этапы истории"
+        ordering = [
+            'order'
+        ]

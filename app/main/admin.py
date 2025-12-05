@@ -146,3 +146,19 @@ class TechnicAdmin(admin.ModelAdmin):
 @admin.register(Etap)
 class EtapAdmin(admin.ModelAdmin):
     pass
+
+
+@admin.register(HomePage)
+class HomePageAdmin(admin.ModelAdmin):
+    filter_horizontal = [
+        "hero_numbers",
+        "preims",
+        "about_company_numbers",
+        "history_etaps",
+        "faqs",
+    ]
+
+
+@admin.register(HistoryEtap)
+class HistoryEtapAdmin(admin.ModelAdmin):
+    pass
