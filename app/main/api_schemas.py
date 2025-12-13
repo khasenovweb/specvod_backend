@@ -3,6 +3,7 @@ from ninja import ModelSchema, Schema, Field
 from sorl.thumbnail import get_thumbnail
 
 from main.models import *
+from services.api_schemas import ServiceMenuSchema, ServiceMenuChildSchema
 
 
 class PreimSchema(ModelSchema):
@@ -165,3 +166,7 @@ class HistoryEtapSchema(ModelSchema):
     @staticmethod
     def resolve_img_thumb(obj):
         return (get_thumbnail(obj.img, "500x500", crop="center", quality=99, format="PNG").url if obj.img else None)
+
+        
+class SearchSchema(Schema):
+    services: List[ServiceMenuChildSchema] = []

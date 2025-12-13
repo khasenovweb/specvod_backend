@@ -5,6 +5,9 @@ from typing import Optional, List
 from services.models import *
 from works.models import *
 
+from main.services.send_mail import send_email
+
+from main.tasks import form_consult_email_send
 
 
 @router.get("/preims/", tags=["Основное"], summary="Список преимуществ", response=List[PreimSchema])
@@ -175,5 +178,32 @@ def history_etaps_list(request):
     history_etaps = HistoryEtap.objects.all()
     return history_etaps
 
+
+@router.get("/search/", tags=["Основное"], summary="Поиск", response=SearchSchema)
+def search(request, query: str):
+    services = Service.objects.filter(name__icontains=query)[:3]
+    return {
+        'services': services
+    }
+
+
+@router.post("/form/consult/", tags=["Отправка форм"], summary="Отправка формы консультация")
+def form_consult_send(request):
+    """ Отправка формы консультация """
+    validation_data = {}
+    name = request.POST.get('name')
+    phone = request.POST.get('phone')
+
+    if not name:
+        validation_data["name"] = {'message': 'Введите имя'}
+
+    if not phone:
+        validation_data["phone"] = {'message': 'Введите телефон'}
+
+    if not validation_data:
+        form_consult_email_send.delay(request.POST)
+    return {
+        "validation_data": validation_data
+    }
 
 

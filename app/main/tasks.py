@@ -1,0 +1,31 @@
+from celery import shared_task
+from app.celery import app
+import time
+
+from main.models import *
+from main.services.send_mail import send_email
+
+import os
+from django.conf import settings
+from django.core import management
+
+
+@shared_task()
+def form_consult_email_send(data):
+    form_name = data.get('form_name')
+    phone = data.get('phone') 
+    name = data.get('name') 
+
+    email_body = ""
+
+    if form_name:
+        email_body += f"Форма: {form_name}\n"
+    
+    if phone:
+        email_body += f"Телефон: {phone}\n" 
+
+    if name:
+        email_body += f"Имя: {name}\n" 
+
+    send_email("Заявка с сайта", email_body, [])
+    return "Отправка заявки с сайта"
