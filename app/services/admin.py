@@ -27,5 +27,11 @@ class ServiceAdmin(MPTTModelAdmin):
 @admin.register(Property)
 class PropertyAdmin(admin.ModelAdmin):
     """ Характеристика """
-    pass
+    list_display = [
+        '__str__',
+        'order',
+    ]
+    list_editable = [
+        'order',
+    ]
 

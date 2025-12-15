@@ -8,7 +8,13 @@ from main.models import *
 
 @admin.register(Preim)
 class PreimAdmin(admin.ModelAdmin):
-    pass
+    list_display = [
+        'title',
+        'order',
+    ]
+    list_editable = [
+        'order', 
+    ]
 
 
 @admin.register(Employee)
@@ -31,6 +37,10 @@ class EmployeeAdmin(admin.ModelAdmin):
         'display_img_preview',
         'fio',
         'role',
+        'order',
+    ]
+    list_editable = [
+        'order', 
     ]
     readonly_fields = [
         'display_img_preview'
@@ -76,6 +86,16 @@ class ReviewAdmin(admin.ModelAdmin):
     list_display = [
         'user_name',
         'source',
+        'rating',
+        'date',
+    ]
+    list_filter = [
+        'source',
+        'rating',
+        'date', 
+    ]
+    search_fields = [
+        'user_name',
     ]
 
 
@@ -105,17 +125,48 @@ class ReviewSourceAdmin(admin.ModelAdmin):
 
 @admin.register(Faq)
 class FaqAdmin(admin.ModelAdmin):
-    pass
+    list_display = [
+        'question',
+        'order',
+    ]
+    list_editable = [
+        'order', 
+    ]
 
 
 @admin.register(Number)
 class NumberAdmin(admin.ModelAdmin):
-    pass
+    list_display = [
+        '__str__',
+        'order', 
+    ]
+    list_editable = [
+        'order', 
+    ]
 
 
 @admin.register(Sertificate)
 class SertificateAdmin(admin.ModelAdmin):
-    pass
+    @admin.display(description='Превью')
+    def display_img_preview(self, obj):
+        if obj.img:
+            return format_html(
+                f'<img src="{obj.img.url}" style="max-height: 50px; max-width: 50px;" />',
+            )
+        return "Нет изображения"
+
+    list_display = [
+        'display_img_preview',
+        'name',
+        'order',
+    ]
+    readonly_fields = [
+        'display_img_preview', 
+    ]
+    list_editable = [
+        'order', 
+    ]
+    
 
 
 @admin.register(Quiz)
@@ -125,27 +176,101 @@ class QuizAdmin(admin.ModelAdmin):
 
 @admin.register(Promotion)
 class PromotionAdmin(admin.ModelAdmin):
-    pass
+    @admin.display(description='Превью')
+    def display_img_preview(self, obj):
+        if obj.img:
+            return format_html(
+                f'<img src="{obj.img.url}" style="max-height: 50px; max-width: 50px;" />',
+            )
+        return "Нет изображения"
+
+    list_display = [
+        'display_img_preview',
+        'name',
+    ]
+    readonly_fields = [
+        'display_img_preview', 
+    ]
 
 
 @admin.register(PricePosition)
 class PricePositionAdmin(admin.ModelAdmin):
-    pass
+    @admin.display(description='Превью')
+    def display_img_preview(self, obj):
+        if obj.img:
+            return format_html(
+                f'<img src="{obj.img.url}" style="max-height: 50px; max-width: 50px;" />',
+            )
+        return "Нет изображения"
+
+    readonly_fields = [
+        'display_img_preview',
+    ]
+
+    list_display = [
+        'name', 
+        'display_img_preview', 
+        'price', 
+        'order', 
+    ]
+    list_editable = [
+        'order',  
+    ]
 
 
 @admin.register(Method)
 class MethodAdmin(admin.ModelAdmin):
-    pass
+    @admin.display(description='Превью')
+    def display_img_preview(self, obj):
+        if obj.img:
+            return format_html(
+                f'<img src="{obj.img.url}" style="max-height: 50px; max-width: 50px;" />',
+            )
+        return "Нет изображения"
+    readonly_fields = [
+        'display_img_preview',
+    ]
+    list_display = [
+        'display_img_preview',
+        'title',
+        'order',
+    ]
+    list_editable = [
+        'order',    
+    ]
 
 
 @admin.register(Technic)
 class TechnicAdmin(admin.ModelAdmin):
-    pass
+    @admin.display(description='Превью')
+    def display_img_preview(self, obj):
+        if obj.img:
+            return format_html(
+                f'<img src="{obj.img.url}" style="max-height: 50px; max-width: 50px;" />',
+            )
+        return "Нет изображения"
+    readonly_fields = [
+        'display_img_preview',
+    ]
+    list_display = [
+        'display_img_preview',
+        'title',
+        'order',
+    ]
+    list_editable = [
+        'order',    
+    ]
 
 
 @admin.register(Etap)
 class EtapAdmin(admin.ModelAdmin):
-    pass
+    list_display = [
+        'name',
+        'order',
+    ]
+    list_editable = [
+        'order', 
+    ]
 
 
 @admin.register(HomePage)
@@ -161,4 +286,21 @@ class HomePageAdmin(admin.ModelAdmin):
 
 @admin.register(HistoryEtap)
 class HistoryEtapAdmin(admin.ModelAdmin):
-    pass
+    @admin.display(description='Превью')
+    def display_img_preview(self, obj):
+        if obj.img:
+            return format_html(
+                f'<img src="{obj.img.url}" style="max-height: 50px; max-width: 50px;" />',
+            )
+        return "Нет изображения"
+    readonly_fields = [
+        'display_img_preview',
+    ]
+    list_display = [
+        'display_img_preview',
+        'title',
+        'order',
+    ]
+    list_editable = [
+        'order', 
+    ]
