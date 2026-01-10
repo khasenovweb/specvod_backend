@@ -8,7 +8,7 @@ from main.models import *
 class Service(MPTTModel):
     """ Услуга """
     seo_title = models.CharField(verbose_name="SEO title", max_length=255, null=True, blank=True)
-    seo_desc = models.TextField(verbose_name="SEO desc", max_length=255, null=True, blank=True)
+    seo_desc = models.TextField(verbose_name="SEO desc", null=True, blank=True)
     name = models.CharField(verbose_name="Название", max_length=255)
     slug = models.SlugField(verbose_name="SLUG", unique=True)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
@@ -16,7 +16,7 @@ class Service(MPTTModel):
     price = models.CharField(verbose_name="Цена", max_length=255, null=True, blank=True)
 
     hero_title = models.CharField(verbose_name="Заголовок (первый экран)", max_length=255, null=True, blank=True)
-    hero_desc = models.TextField(verbose_name="Описание (первый экран)", max_length=255, null=True, blank=True)
+    hero_desc = models.TextField(verbose_name="Описание (первый экран)", null=True, blank=True)
     hero_bg_img = models.ImageField(verbose_name="Фоновая картинка (первый экран", upload_to="services/hero/", null=True, blank=True)
     hero_numbers = models.ManyToManyField("main.Number", verbose_name="Цифры (первый экран)", blank=True)
 

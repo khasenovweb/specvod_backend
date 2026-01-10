@@ -242,17 +242,17 @@ class Etap(models.Model):
 class HomePage(models.Model):
     """ Главная страница """
     seo_title = models.CharField(verbose_name="SEO title", max_length=255, null=True, blank=True)
-    seo_desc = models.TextField(verbose_name="SEO desc", max_length=255, null=True, blank=True)
+    seo_desc = models.TextField(verbose_name="SEO desc", null=True, blank=True)
 
     hero_title = models.CharField(verbose_name="Заголовок (первый экран)", max_length=255)
-    hero_desc = models.TextField(verbose_name="Описание (первый экран)", max_length=255, null=True, blank=True)
+    hero_desc = models.TextField(verbose_name="Описание (первый экран)", null=True, blank=True)
     hero_bg_img = models.ImageField(verbose_name="Фоновая картинка (первый экран", upload_to="services/hero/", null=True, blank=True)
     hero_numbers = models.ManyToManyField("Number", verbose_name="Цифры (первый экран)", blank=True, related_name="homapage_hero_numbers")
 
     preims = models.ManyToManyField("Preim", verbose_name="Преимущества", blank=True)
 
     about_company_title = models.CharField(verbose_name="Заголовок (о компании)", max_length=255, null=True, blank=True)
-    about_company_text = models.TextField(verbose_name="Текст (о компании)", max_length=255, null=True, blank=True)
+    about_company_text = models.TextField(verbose_name="Текст (о компании)", null=True, blank=True)
     about_company_img = models.ImageField(verbose_name="Изображение (о компании)", upload_to="about_company/", null=True, blank=True)
     about_company_numbers = models.ManyToManyField("Number", verbose_name="Цифры (о компании)", blank=True, related_name="homapage_about_company_numbers")
 
