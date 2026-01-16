@@ -54,6 +54,11 @@ class Service(MPTTModel):
     etaps_img = models.ImageField(verbose_name="Изображение (этапы)", upload_to="etaps/", null=True, blank=True)
     etaps = models.ManyToManyField("main.Etap", verbose_name="Этапы", blank=True)
 
+    consult_title = models.TextField(verbose_name="Заголовок заказа консультации", null=True, blank=True)
+
+    etaps2_title = models.CharField(verbose_name="Заголовок (этапы 2)", max_length=255, null=True, blank=True)
+    etaps2 = models.ManyToManyField("main.Etap", verbose_name="Этапы 2", blank=True, related_name="etaps2_service")
+
     # здесь должны быть работы
     
     reviews = models.ManyToManyField("main.Review", verbose_name="Отзывы", blank=True)

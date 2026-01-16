@@ -154,14 +154,17 @@ def technics_list(request, service_slug: str = None):
 
 
 @router.get("/etaps/", tags=["Основное"], summary="Список этапов", response=List[EtapSchema])
-def etaps_list(request, service_slug: str = None):
+def etaps_list(request, service_slug: str = None, etaps_type: str = None):
     """ Список этапов """
     etaps = Etap.objects.all()
 
     if service_slug:
         service = Service.objects.get(slug=service_slug)
-        etaps = service.etaps.all()
-        
+        if etaps_type == '2':
+            etaps = service.etaps2.all()
+        else:
+            etaps = service.etaps.all()
+            
     return etaps
 
 
