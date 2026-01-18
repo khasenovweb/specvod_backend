@@ -95,6 +95,8 @@ class ServiceChildrenSchema(ModelSchema):
         fields = [
             "name",
             "hero_desc",
+            "name_listing",
+            "desc_listing",
             "price",
         ] 
 

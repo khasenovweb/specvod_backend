@@ -10,6 +10,8 @@ class Service(MPTTModel):
     seo_title = models.CharField(verbose_name="SEO title", max_length=255, null=True, blank=True)
     seo_desc = models.TextField(verbose_name="SEO desc", null=True, blank=True)
     name = models.CharField(verbose_name="Название", max_length=255)
+    name_listing = models.CharField(verbose_name="Название в списке", max_length=255, null=True, blank=True)
+    desc_listing = models.TextField(verbose_name="Описание в списке", null=True, blank=True)
     slug = models.SlugField(verbose_name="SLUG", unique=True)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
 
