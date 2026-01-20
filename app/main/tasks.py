@@ -16,6 +16,10 @@ def form_consult_email_send(data):
     page_url = data.get('page_url')
     phone = data.get('phone') 
     name = data.get('name') 
+    truba = data.get('truba') 
+    raion = data.get('raion') 
+    deep = data.get('deep') 
+    obustr = data.get('obustr') 
 
     email_body = ""
 
@@ -27,6 +31,18 @@ def form_consult_email_send(data):
     
     if phone:
         email_body += f"Телефон: {phone}\n" 
+    
+    if truba:
+        email_body += f"Обсадная труба: {truba}\n" 
+    
+    if raion:
+        email_body += f"Выберите район: {raion}\n" 
+    
+    if deep:
+        email_body += f"Глубина скважины у ваших соседей: {deep}\n" 
+    
+    if obustr:
+        email_body += f"Обустройство: {obustr}\n" 
 
     if page_url:
         email_body += f"Страница: {page_url}\n" 
