@@ -67,6 +67,8 @@ class Service(MPTTModel):
 
     faqs = models.ManyToManyField("main.Faq", verbose_name="FAQS", blank=True)
 
+    anchors = models.ManyToManyField("main.Anchor", verbose_name="Якоря", blank=True)
+
     class MPTTMeta:
         order_insertion_by = ['name']
 

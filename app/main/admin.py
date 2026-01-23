@@ -281,6 +281,7 @@ class HomePageAdmin(admin.ModelAdmin):
         "about_company_numbers",
         "history_etaps",
         "faqs",
+        "anchors",
     ]
 
 
@@ -299,6 +300,18 @@ class HistoryEtapAdmin(admin.ModelAdmin):
     list_display = [
         'display_img_preview',
         'title',
+        'order',
+    ]
+    list_editable = [
+        'order', 
+    ]
+
+
+@admin.register(Anchor)
+class AnchorAdmin(admin.ModelAdmin):
+    list_display = [
+        'name',
+        'block',
         'order',
     ]
     list_editable = [

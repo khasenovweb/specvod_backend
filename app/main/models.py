@@ -208,7 +208,7 @@ class Method(models.Model):
 class Technic(models.Model):
     """ Техника """
     title = models.CharField(verbose_name="Заголовок", max_length=255)
-    desc = models.TextField(verbose_name="Описание")
+    desc = CKEditor5Field(verbose_name="Описание")
     img = models.ImageField(verbose_name="Изображение", upload_to="methods/")
     order = models.IntegerField(verbose_name="Порядок сортировки", default=0)
 
@@ -265,6 +265,8 @@ class HomePage(models.Model):
 
     faqs = models.ManyToManyField("Faq", verbose_name="FAQS", blank=True)
 
+    anchors = models.ManyToManyField("main.Anchor", verbose_name="Якоря", blank=True)
+
 
     def __str__(self):
         return self.hero_title
@@ -288,6 +290,45 @@ class HistoryEtap(models.Model):
     class Meta:
         verbose_name = "Этап истории"
         verbose_name_plural = "Этапы истории"
+        ordering = [
+            'order'
+        ]
+
+        
+blocks_choices = (
+    ('#preims','Преимущества'),
+    ('#quiz','Квиз'),
+    ('#about-activities','О нашей деятельности'),
+    ('#about_company','О компании'),
+    ('#sertificatesslider','Сертификаты (слайдер)'),
+    ('#promotions','Акции'),
+    ('#typesgrid','Дочерние услуги'),
+    ('#price','Прайс'),
+    ('#calc','Калькулятор'),
+    ('#calc2','Калькулятор 2'),
+    ('#methods','Способы'),
+    ('#machines','Техника'),
+    ('#etaps','Этапы'),
+    ('#etaps2','Этапы 2'),
+    ('#commandslider','Команда'),
+    ('#partnersslider','Партнеры'),
+    ('#worksmap','Работы'),
+    ('#reviewsslider','Отзывы'),
+    ('#faq','Вопрос-ответ'),
+)
+
+class Anchor(models.Model):
+    """ Якорь """
+    name = models.CharField(verbose_name="Название", max_length=255)
+    block = models.CharField(verbose_name="Блок", max_length=255, choices=blocks_choices)
+    order = models.IntegerField(verbose_name="Порядок сортировки", default=0)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Якорь"
+        verbose_name_plural = "Якоря"
         ordering = [
             'order'
         ]

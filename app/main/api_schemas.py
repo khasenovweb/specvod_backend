@@ -170,3 +170,11 @@ class HistoryEtapSchema(ModelSchema):
         
 class SearchSchema(Schema):
     services: List[ServiceMenuChildSchema] = []
+
+
+
+class AnchorSchema(ModelSchema):
+
+    class Meta:
+        model = Anchor
+        fields = "__all__"

@@ -190,6 +190,21 @@ def search(request, query: str):
     }
 
 
+@router.get("/anchors/", tags=["Основное"], summary="Список якорей", response=List[AnchorSchema])
+def anchors_list(request, service_slug: str = None, homepage: bool = None):
+    anchors = Anchor.objects.all()
+
+    if service_slug:
+        service = Service.objects.get(slug=service_slug)
+        anchors = service.anchors.all()
+
+    if homepage:
+        homepage = HomePage.objects.all().first()
+        anchors = homepage.anchors.all()
+
+    return anchors
+
+
 @router.post("/form/consult/", tags=["Отправка форм"], summary="Отправка формы консультация")
 def form_consult_send(request):
     """ Отправка формы консультация """
