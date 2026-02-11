@@ -1,4 +1,5 @@
 from django.db import models
+from django_ckeditor_5.fields import CKEditor5Field
 
 
 
@@ -71,6 +72,10 @@ class Contacts(models.Model):
     conpany_name = models.TextField(verbose_name="Название огранизации")
     inn_kpp = models.CharField(verbose_name="ИНН/КПП", max_length=255)
     ogrn = models.CharField(verbose_name="ОГРН", max_length=255)
+    policy_text_title = models.CharField(verbose_name="Заголовок политики конфиденциальности", max_length=255, null=True, blank=True)
+    policy_text = CKEditor5Field(verbose_name="Текст политики конфиденциальности", null=True, blank=True)
+    cookie_text_title = models.CharField(verbose_name="Заголовок cookie", max_length=255, null=True, blank=True)
+    cookie_text = CKEditor5Field(verbose_name="Текст cookie", null=True, blank=True)
 
     def __str__(self):
         return self.adress

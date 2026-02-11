@@ -29,3 +29,28 @@ class ContactsSchema(ModelSchema):
     class Meta:
         model = Contacts
         fields = "__all__"
+        exclude = [
+            "policy_text_title",
+            "policy_text",
+            "cookie_text_title",
+            "cookie_text",
+        ]
+
+        
+
+class ContactsPolicySchema(ModelSchema):
+    class Meta:
+        model = Contacts
+        fields = [
+            "policy_text_title",
+            "policy_text",
+        ]
+
+
+class ContactsCookieSchema(ModelSchema):
+    class Meta:
+        model = Contacts
+        fields = [
+            "cookie_text_title",
+            "cookie_text",
+        ]

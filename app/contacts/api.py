@@ -32,6 +32,32 @@ def files_list(request):
     return files
 
 
+@router.get("/policy/", tags=["Контакты"], summary="Политика конфиденциальности", response=ContactsPolicySchema)
+def contacts_policy(request):
+    """ Политика конфиденциальности """
+    contacts = Contacts.objects.all().first()
+    if contacts:
+        return contacts
+    else:
+        default_contacts = Contacts()
+        default_contacts.policy_text_title = "-"
+        default_contacts.policy_text = "-"
+        return default_contacts
+
+
+@router.get("/cookie/", tags=["Контакты"], summary="Политика куки", response=ContactsCookieSchema)
+def contacts_cookie(request):
+    """ Политика куки """
+    contacts = Contacts.objects.all().first()
+    if contacts:
+        return contacts
+    else:
+        default_contacts = Contacts()
+        default_contacts.cookie_text_title = "-"
+        default_contacts.cookie_text = "-"
+        return default_contacts
+
+
 @router.get("", tags=["Контакты"], summary="Основные контакты", response=ContactsSchema)
 def contacts(request):
     """ Основные контакты """
