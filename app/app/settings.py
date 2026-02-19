@@ -33,12 +33,14 @@ elif os.getenv('DEBUG') == 'False':
 
 ALLOWED_HOSTS = [
     'specvod.khasenov.ru',
+    'bur-kazan.ru',
     '127.0.0.1'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1',
     'https://specvod.khasenov.ru',
+    'https://bur-kazan.ru/',
 ]
 
 CORS_ALLOWED_ORIGINS = [
