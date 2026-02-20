@@ -40,7 +40,7 @@ ALLOWED_HOSTS = [
 CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1',
     'https://specvod.khasenov.ru',
-    'https://bur-kazan.ru/',
+    'https://bur-kazan.ru',
 ]
 
 CORS_ALLOWED_ORIGINS = [
