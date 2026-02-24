@@ -27,11 +27,13 @@ def send_email(
     :param smtp_port: SMTP порт
     """
 
-    sender_email="sender@akvalir.ru"
-    sender_password="AquaLir2024"
-    receiver_email="hasenovkirill@yandex.ru"
-    smtp_server="smtp.yandex.com"
+    sender_email="sender@specvodstroy.ru"
+    sender_password="burenie450!"
+    smtp_server="mail.hosting.reg.ru"
     smtp_port=587
+
+    receivers = ["hasenovkirill@yandex.ru", "bur-reklama@bk.ru", "info@specvodstroy.ru"]
+    receiver_email = ", ".join(receivers)
     
     # Создаем multipart сообщение
     message = MIMEMultipart()
@@ -79,7 +81,7 @@ def send_email(
         with smtplib.SMTP(smtp_server, smtp_port) as server:
             server.starttls()  # Включаем шифрование
             server.login(sender_email, sender_password)
-            server.sendmail(sender_email, receiver_email, text)
+            server.sendmail(sender_email, receivers, text)
         print("Письмо успешно отправлено!")
     except Exception as e:
         print(f"Ошибка при отправке письма: {e}")
