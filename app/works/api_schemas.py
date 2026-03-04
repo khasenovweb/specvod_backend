@@ -34,7 +34,7 @@ class WorkListingSchema(ModelSchema):
 
     @staticmethod
     def resolve_img_thumb(obj):
-        return (get_thumbnail(obj.img, "710x300", crop="center", quality=99, format="PNG").url if obj.img else None)
+        return (get_thumbnail(obj.img, "710x300", crop="center", quality=80, format="WEBP", upscale=False).url if obj.img else None)
     
     @staticmethod
     def resolve_date(obj):
@@ -54,7 +54,7 @@ class WorkDetailSchema(ModelSchema):
 
     @staticmethod
     def resolve_img_thumb(obj):
-        return (get_thumbnail(obj.img, "1500", quality=99, format="PNG").url if obj.img else None)
+        return (get_thumbnail(obj.img, "1500", quality=80, format="WEBP", upscale=False).url if obj.img else None)
 
         
 class TaskSchema(ModelSchema):
@@ -66,4 +66,4 @@ class TaskSchema(ModelSchema):
 
     @staticmethod
     def resolve_img_thumb(obj):
-        return (get_thumbnail(obj.img, "470x470", crop="center", quality=99, format="PNG").url if obj.img else None)
+        return (get_thumbnail(obj.img, "470x470", crop="center", quality=80, format="WEBP", upscale=False).url if obj.img else None)

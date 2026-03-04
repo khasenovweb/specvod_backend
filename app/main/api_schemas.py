@@ -21,7 +21,7 @@ class EmployeeSchema(ModelSchema):
 
     @staticmethod
     def resolve_img_thumb(obj):
-        return (get_thumbnail(obj.img, "344x344", crop="center", quality=99, format="PNG").url if obj.img else None)
+        return (get_thumbnail(obj.img, "344x344", crop="center", quality=80, format="WEBP", upscale=False).url if obj.img else None)
 
         
 class PartnerSchema(ModelSchema):
@@ -33,7 +33,7 @@ class PartnerSchema(ModelSchema):
 
     @staticmethod
     def resolve_img_thumb(obj):
-        return (get_thumbnail(obj.img, "344x344", crop="center", quality=99, format="PNG").url if obj.img else None)
+        return (get_thumbnail(obj.img, "344x344", crop="center", quality=80, format="WEBP", upscale=False).url if obj.img else None)
 
 
 class ReviewSourceSchema(ModelSchema):
@@ -76,7 +76,7 @@ class SertificateSchema(ModelSchema):
 
     @staticmethod
     def resolve_img_thumb(obj):
-        return (get_thumbnail(obj.img, "344", quality=99, format="PNG").url if obj.img else None)
+        return (get_thumbnail(obj.img, "344", quality=80, format="WEBP", upscale=False).url if obj.img else None)
 
         
 class QuizSchema(ModelSchema):
@@ -95,7 +95,7 @@ class PromotionSchema(ModelSchema):
 
     @staticmethod
     def resolve_img_thumb(obj):
-        return (get_thumbnail(obj.img, "700", quality=99, format="PNG").url if obj.img else None)
+        return (get_thumbnail(obj.img, "700", quality=80, format="WEBP", upscale=False).url if obj.img else None)
 
 
         
@@ -115,7 +115,7 @@ class MethodSchema(ModelSchema):
 
     @staticmethod
     def resolve_img_thumb(obj):
-        return (get_thumbnail(obj.img, "520x520", crop="center", quality=99, format="PNG").url if obj.img else None)
+        return (get_thumbnail(obj.img, "520x520", crop="center", quality=80, format="WEBP", upscale=False).url if obj.img else None)
 
         
 class TechnicSchema(ModelSchema):
@@ -127,7 +127,7 @@ class TechnicSchema(ModelSchema):
 
     @staticmethod
     def resolve_img_thumb(obj):
-        return (get_thumbnail(obj.img, "700", quality=99, format="PNG").url if obj.img else None)
+        return (get_thumbnail(obj.img, "700", quality=80, format="WEBP", upscale=False).url if obj.img else None)
         
 
 class EtapSchema(ModelSchema):
@@ -148,11 +148,11 @@ class HomePageSchema(ModelSchema):
 
     @staticmethod
     def resolve_hero_bg_img_thumb(obj):
-        return (get_thumbnail(obj.hero_bg_img, "1920", quality=99, format="PNG").url if obj.hero_bg_img else None)
+        return (get_thumbnail(obj.hero_bg_img, "1920", quality=80, format="WEBP", upscale=False).url if obj.hero_bg_img else None)
 
     @staticmethod
     def resolve_about_company_img_thumb(obj):
-        return (get_thumbnail(obj.about_company_img, "520x520", crop="center", quality=99, format="PNG").url if obj.about_company_img else None)
+        return (get_thumbnail(obj.about_company_img, "520x520", crop="center", quality=80, format="WEBP", upscale=False).url if obj.about_company_img else None)
 
 
 
@@ -165,7 +165,7 @@ class HistoryEtapSchema(ModelSchema):
 
     @staticmethod
     def resolve_img_thumb(obj):
-        return (get_thumbnail(obj.img, "500x500", crop="center", quality=99, format="PNG").url if obj.img else None)
+        return (get_thumbnail(obj.img, "500x500", crop="center", quality=80, format="WEBP", upscale=False).url if obj.img else None)
 
         
 class SearchSchema(Schema):
