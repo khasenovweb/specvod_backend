@@ -315,6 +315,7 @@ blocks_choices = (
     ('#worksmap','Работы'),
     ('#reviewsslider','Отзывы'),
     ('#faq','Вопрос-ответ'),
+    ('#services','Услуги'),
 )
 
 class Anchor(models.Model):
