@@ -50,6 +50,8 @@ class WorkDetailSchema(ModelSchema):
         fields = [
             "name",
             "text",
+            "seo_title",
+            "seo_desc",
         ]
 
     @staticmethod
